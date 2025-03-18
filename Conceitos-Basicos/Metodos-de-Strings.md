@@ -62,8 +62,8 @@ print(texto.center(32, '-'))
 
 Saída:
 ```python
-								Exemplo de Título
---------------------------------Exemplo de Título------------------------------		
+				Exemplo de Título
+--------------------------------Exemplo de Título--------------------------------		
 ```
 #### 6. Método `count()`
 
