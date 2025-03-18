@@ -8,7 +8,7 @@ Porém, antes disso, vamos nos familiarizar com essa Linguaguem poderosa e apren
 
 ## 1. Conceitos Introdutórios em Python
 
-**Sintaxe Básica** - Saída de Dados com `print()`, Entrada de Dados com `input()` e boas práticas de programação  
+**Sintaxe Básica** - Saída de Dados com `print()` e Entrada de Dados com `input()`  
 
 **Tipos de Dados e Variáveis** - Inteiros, Floats, Strings, Booleanos, Listas, Tuplas, Conjuntos e Dicionários 
 
