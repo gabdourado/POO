@@ -123,7 +123,7 @@ print(l)                # []
 #### 2.2.2 Métodos `index()` e `count()`
 O método `count()` conta a quantidade de um determinado elemento passado como parçametro:
 ```python
-t = [1, 1, 2, 1, 2]
+l = [1, 1, 2, 1, 2]
 print(l.count(1))       # 3
 ```
 Já o  método `index()` retorna o índice da primeira ocorrência de um **elemento que está na lista**, caso não esteja, dá erro:
