@@ -108,10 +108,10 @@ l[0] = 10                    # Aletar o elemento da posicao zero (0)
 print(l)                     # [10, 2, 3, 4]
 ```
 #### 2.1.3 Apagar elementos
-Podemos apagar elementos em uma lista utilizando os métodos `pop()`, `remove()` e `del()`:
+Podemos apagar elementos em uma lista utilizando os métodos `pop()` e `remove()` ou a função `del()`:
 ```python
 l = [0, 1, 2, 3, 4, 5]
-pop(5)                       # Remove o elemento da posicao cinco (5) da lista e retorna o elemento dessa posicao
+l.pop(5)                       # Remove o elemento da posicao cinco (5) da lista e retorna o elemento dessa posicao
 del(l[0])                    # Deleta o elemento a posicao zero (0) da lista
 l.remove(2)                  # Remove o elemento 2, ja que esta na lista
 l.remove(2)                  # Erro: ValueError: list.remove(x): x not in list
@@ -182,7 +182,6 @@ s[0] = 10            # Erro: TypeError: 'set' object does not support item assig
 s = {1, 2, 2, 3, 3}
 print(s)             # {1, 2, 3}
 ```
-
 ### 3.1 Operações Básicas
 
 #### 3.1.1 Criação
@@ -201,7 +200,7 @@ s.add(4)                   # Adiciona o elemento quatro (4) no conjunto
 s.update([5, 6])           # Adiciona os elementos cinco e seis [5, 6] no conjunto 
 print(s)                   # {1, 2, 3, 4, 5}
 ```
-#### 3.1.2 Apagar elementos
+#### 3.1.3 Apagar elementos
 Podemos apagar elementos em um conjunto utilizando os métodos `discard()` e `remove()`:
 ```python
 s = {0, 1, 2, 3, 4, 5}
@@ -263,4 +262,76 @@ Podemos verificar se dois conjuntos não têm elementos em comum usando o métod
 s1 = {1, 2, 3}
 s2 = {4, 5, 6}
 print(s1.isdisjoint(s2))             # True, pois s1 e s2 nao contem elementos em comum
+```
+## 4.0 Dicionários
+Um dicionário é uma estrutura de dados **mutável**, **ordenada** (ou não) e que mapeia pares **chave → valor**.
+
+### 4.1 Operações Básicas
+#### 4.1.1 Criação
+Dicionários são criados utilizando a função `dict()` ou `{}` contendo pares chave → valor. Observe:
+```python
+d1 = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72}  # Cria um dicionario com seus pares chave → valor
+d2 = dict()                                            # Cria um dicionario vazio, podemos usar também {}              
+```
+#### 4.1.2 Inserção de chaves
+Podemos inserir novas chaves em um dicionário já criado:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72}
+d['sexo'] = 'M'                                       # Adiciona uma nova chave em d
+print(d)                                              # {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72, 'sexo': 'M'}
+```
+#### 4.1.3 Alterar elementos
+Podemos alterar um valor em um dicionário já criado:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72}
+d['nome'] = 'Thiago'                                  # Modifica o valor do campo 'nome' em d
+print(d)                                              # {'nome': 'Thiago', 'idade': 20, 'altura': 1.72}
+```
+#### 4.1.4 Apagar elementos
+Podemos apagar elementos em um conjunto utilizando os métodos `pop()` ou a função `del()`:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.pop('altura')                                        # Remove a chave 'altura', com erro se nao existir         
+del (d['idade'])                                       # Remove a chave 'altura', com erro se nao existir
+print(d)                                               # {'nome': 'Gabriel'}
+```
+### 4.2 Métodos Próprios
+#### 4.2.1 Método `clear()`
+Remove todos os pares do dicionário, esvaziando-o:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.clear()                                             # Limpa o dicionario
+print(d)                                              # {}
+```
+#### 4.2.2 Método `get()`
+Retorna o valor da chave se ela existir, se não, retorna , retorna `None` (ou o valor padrão fornecido):
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+print(d.get('sexo'))                                   # None
+print(d.get('sexo', 0))                                # 0
+```
+#### 4.2.1 Método `update()`
+Modifica um dicionário, adicionando ou atualizando pares chave → valor:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.update(idade = 30, cidade = 'Fortaleza')            # Atualiza 'idade' e adiciona 'cidade'
+print(d)                                              # {'nome': 'Gabriel', 'idade': 30, 'altura': 1.72, 'cidade': 'Fortaleza'}
+```
+#### 4.2.3 Método `keys()`
+Retorna um iterável com todas as chaves do dicionário:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.keys()                                               # dict_keys(['nome', 'idade', 'altura'])
+```
+#### 4.2.4 Método `values()`
+Retorna um iterável com todos os valores do dicionário:
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.values()                                              # dict_values(['Gabriel', 20, 1.72])
+```
+#### 4.2.4 Método `items()`
+ Retorna um iterável com tuplas (chave, valor):
+```python
+d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
+d.items()                                              # dict_items([('nome', 'Gabriel'), ('idade', 20), ('altura', 1.72)])
 ```
