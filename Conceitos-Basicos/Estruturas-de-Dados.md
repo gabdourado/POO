@@ -1,7 +1,7 @@
 # Algumas Estruturas de Dados do Python
 
 ## 1.0 Tuplas
-Uma tupla é uma estrutura **ordenada** e **imutável**. Isso significa que:
+Uma tupla é uma estrutura **ordenada**, **imutável** e **permissiva a duplicatas**. Isso significa que:
 
 - A ordem dos elementos importa.
 ```python
@@ -13,6 +13,11 @@ print(t1 == t2)       # False, porque a ordem eh diferente
 ```python
 t = (1, 2, 3)
 t[0] = 10             # Erro: 'tuple' object does not support item assignment
+```
+- Permite valores duplicados.
+```python
+t = (1, 2, 2)
+print(t)             # (1, 2, 2)
 ```
 
 ### 1.1 Operações Básicas
@@ -59,19 +64,19 @@ print(t.index(40))     # Erro: ValueError: tuple.index(x): x not in tuple
 ## 2.0 Listas
 Uma tupla é uma estrutura de dados:
 
-- Ordenada:  a ordem dos elementos importa
+- **Ordenada**:  a ordem dos elementos importa.
 ```python
 l1 = [1, 2, 3]
 l2 = [3, 2, 1]
 print(l1 == l2)       # False, porque a ordem eh diferente
 ```
-- Mutável: pode ser alterada
+- **Mutável**: pode ser alterada.
 ```python
 l = [1, 2, 3]
 l[0] = 10
 print(l)             # [10, 2, 3]
 ```
-- Permite valores duplicados
+- **Permissiva a duplicatas**: Permite valores duplicados.
 ```python
 l = [1, 2, 2, 3, 3]
 print(l)             # [1, 2, 2, 3, 3]
@@ -83,13 +88,13 @@ print(l)             # [1, 2, 2, 3, 3]
 Listas são criadas utilizando parênteses `[]`. Observe:
 ```python
 l1 = [1, 2, 3]                    # Lista com tres elementos
-l2 = []                           # lista vazia
+l2 = []                           # Cria uma lista vazia
 l3 = [1, "texto", True, (1, 2)]   # Comporta varios tipos de dados
 ```
 #### 2.1.2 Inserção de elementos
 Podemos inserir elementos em uma lista utilizando os métodos `append()` e `insert()`:
 ```python
-l = []                       # Cria uma lista vazia
+l = []                       
 l.append(1)                  # Insere o elemento no fim da lista
 l.append(2)                  # Insere o elemento no fim da lista
 l.insert(0, 0)               # Insere o elemento na posicao zero (0)
@@ -116,11 +121,10 @@ l.remove(2)                  # Erro: ValueError: list.remove(x): x not in list
 Podemos esvaziar toda a lista usando o método `clear()`:
 ```python
 l = [1, 2, 3, 4]
-lista.clear()           # esvazia a lista
+lista.clear()           # Esvazia a lista
 print(l)                # []
 ```
-
-#### 2.2.2 Métodos `index()` e `count()`
+#### 2.2.2 Métodos `count()` e `index()`
 O método `count()` conta a quantidade de um determinado elemento passado como parçametro:
 ```python
 l = [1, 1, 2, 1, 2]
@@ -130,7 +134,7 @@ Já o  método `index()` retorna o índice da primeira ocorrência de um **eleme
 ```python
 l = [1, 2, 3, 2]
 print(t.index(2))     # 1
-print(t.index(2, 2))  # 3 (busca a partir do indice 2)
+print(t.index(2, 2))  # 3 (Busca a partir do indice 2)
 print(t.index(4))     # Erro: ValueError: 4 is not in list
 ```
 #### 2.2.3 Método `sort()`
@@ -143,9 +147,120 @@ print(l)              # [1, 2, 5, 9]
 l.sort(reverse=True)  # Ordena em ordem decrescente
 print(l)              # [9, 5, 2, 1]
 ```
+#### 2.2.4 Método `copy()`
+Podemos cria uma nova lista com os mesmos elementos da original, **sem alterar a original** usando o método `copy()`:
+```python
+l1 = [1, 2, 3, 4]
+l2 = l1.copy()         # Copia os elementos de l1 para l2
+l2.append(5)           # Adiciona o elemento cinco (5) em l2
+print(l1)              # [1, 2, 3, 4]
+print(l2)              # [1, 2, 3, 4, 5]
+```
+
 ### 2.3 List Comprehension
 É uma forma compacta de criar listas usando uma estrutura de repetição e estrutura de condição, se necessário:
 ```python
 pares = [x for x in range(10) if x % 2 == 0]
 print(pares)                                     # [0, 2, 4, 6, 8]
+```
+## 3.0 Conjuntos
+Um conjunto é uma estrutura de dados:
+
+- **Não Ordenada**:  a ordem dos elementos **não** importa.
+```python
+s1 = {1, 2, 3}
+s2 = (3, 2, 1}
+print(s1 == s2)       # True, porque nao importa a ordem
+```
+- **Mutável**: pode ser alterada, porém, não pode ser acessada por índice.
+```python
+s = {1, 2, 3}
+s[0] = 10            # Erro: TypeError: 'set' object does not support item assignment
+```
+- **Não Permissiva a duplicatas**: Valores repetidos são automaticamente ignorados.
+```python
+s = {1, 2, 2, 3, 3}
+print(s)             # {1, 2, 3}
+```
+
+### 3.1 Operações Básicas
+
+#### 3.1.1 Criação
+Conjuntos são criados utilizando a função `set()` ou `{}` contendo elementos. Observe:
+```python
+s1 = {1, 2, 2, 3, 3, 4}    # Elementos duplicados são descartados
+s2 = set()                 # Cria um conjunto vazio
+s3 = {}                    # Atencao: {} cria um dicionario, nao um set
+print(s1)                  # {1, 2, 3, 4}
+```
+#### 3.1.2 Inserção de elementos
+Podemos inserir elementos em um conjunto utilizando os métodos `add()` e `update()`:
+```python
+s = {1, 2, 3}
+s.add(4)                   # Adiciona o elemento quatro (4) no conjunto
+s.update([5, 6])           # Adiciona os elementos cinco e seis [5, 6] no conjunto 
+print(s)                   # {1, 2, 3, 4, 5}
+```
+#### 3.1.2 Apagar elementos
+Podemos apagar elementos em um conjunto utilizando os métodos `discard()` e `remove()`:
+```python
+s = {0, 1, 2, 3, 4, 5}
+s.discard(2)                 # Remove o item dois (2) do conjunto, sem erro se nao existir
+s.remove(3)                  # Remove o item tres (3) do conjunto, com erro se nao existir
+s.remove(2)                  # Erro: KeyError: 2
+```
+### 3.2 Métodos Próprios
+#### 3.2.1 Método `union()`
+Podemos unir dois ou mais conjuntos usando o método `union()`:
+```python
+s1 = {1, 2, 3}
+s2 = {3, 4, 5}
+s3 = s1.union(s2)           # Uniao dos conjuntos s1 e s2, podemos usar s1 | s2
+print(s3)                   # {1, 2, 3, 4, 5}
+```
+#### 3.2.2 Método `intersection()`
+Podemos pegar os elementos comuns entre dois ou mais conjuntos usando o método `intersection()`:
+```python
+s1 = {1, 2, 3, 4}
+s2 = {3, 4, 5}
+s3 = s1.intersection(s2)    # Interseccão dos conjuntos s1 e s2, podemos usar s1 & s2
+print(s3)                   # {3, 4}
+```
+#### 3.2.3 Método `difference()`
+Podemos calcular a diferença entre dois ou mais conjuntos usando o método `difference()`:
+```python
+s1 = {1, 2, 3, 4}
+s2 = {3, 4, 5}
+s3 = s1.difference(s2)      # Diferenca dos conjuntos s1 e s2, podemos usar s1 - s2
+print(s3)                   # {1, 2}
+```
+#### 3.2.4 Método `symmetric_difference()`
+Podemos calcular a diferença simétrica entre dois ou mais conjuntos usando o método `symmetric_difference()`:
+```python
+s1 = {1, 2, 3, 4}
+s2 = {3, 4, 5}
+s3 = s1.symmetric_difference(s2)    # Diferenca simetrica dos conjuntos s1 e s2, podemos usar s1 ^ s2
+print(s3)                           # {1, 2, 5}
+```
+#### 3.2.5 Método `issubset()`
+Podemos verificar se um conjunto é subconjunto de outro (está conjuto em outro) usando o método `issubset()`:
+```python
+s1 = {1, 2, 3}
+s2 = {1, 2, 3, 4, 5}
+print(s1.issubset(s2))             # True, pois s1 eh um subconjunto de s2 (está contido), podemos usar s1 <= s2
+```
+#### 3.2.6 Método `issuperset()`
+Podemos verificar se um conjunto é superconjunto de outro (contém o outro conjuto) usando o método `issuperset()`:
+```python
+s1 = {1, 2, 3}
+s2 = {1, 2, 3, 4, 5}
+print(s1.issuperset(s2))             # False, pois s1 nao contem s2, podemos usar s1 >= s2
+print(s2.issuperset(s1))             # True, pois s2 contem s1, podemos usar s2 >= s1
+```
+#### 3.2.7 Método `isdisjoint()`
+Podemos verificar se dois conjuntos não têm elementos em comum usando o método `isdisjoint()`:
+```python
+s1 = {1, 2, 3}
+s2 = {4, 5, 6}
+print(s1.isdisjoint(s2))             # True, pois s1 e s2 nao contem elementos em comum
 ```
