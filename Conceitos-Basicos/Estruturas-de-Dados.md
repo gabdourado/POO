@@ -1,5 +1,4 @@
 # Algumas Estruturas de Dados do Python
-
 ## 1.0 Tuplas
 Uma tupla é uma estrutura **ordenada**, **imutável** e **permissiva a duplicatas**. Isso significa que:
 
@@ -19,9 +18,7 @@ t[0] = 10             # Erro: 'tuple' object does not support item assignment
 t = (1, 2, 2)
 print(t)             # (1, 2, 2)
 ```
-
 ### 1.1 Operações Básicas
-
 #### 1.1.1 Criação
 Tuplas são criadas utilizando parênteses `()`. Observe:
 ```python
@@ -36,7 +33,6 @@ t = (1, 2, 3)
 print(t[0])           # 1
 print(t[-1])          # 3 (ultimo)
 ```
-
 #### 1.1.3 Desempacomento (unpacking)
 Tuplas podem ser desempacotadas facilmente: 
 ```python
@@ -46,7 +42,6 @@ print(x, y)           # -1 2
 ```
 ### 1.2 Métodos Próprios
 Tuplas têm apenas dois métodos embutidos:
-
 #### 1.2.1 Método `count()`
 O método `count()` conta a quantidade de um determinado elemento passado como parçametro:
 ```python
@@ -83,7 +78,6 @@ print(l)             # [1, 2, 2, 3, 3]
 ```
 
 ### 2.1 Operações Básicas
-
 #### 2.1.1 Criação
 Listas são criadas utilizando parênteses `[]`. Observe:
 ```python
@@ -156,7 +150,6 @@ l2.append(5)           # Adiciona o elemento cinco (5) em l2
 print(l1)              # [1, 2, 3, 4]
 print(l2)              # [1, 2, 3, 4, 5]
 ```
-
 ### 2.3 List Comprehension
 É uma forma compacta de criar listas usando uma estrutura de repetição e estrutura de condição, se necessário:
 ```python
@@ -169,7 +162,7 @@ Um conjunto é uma estrutura de dados:
 - **Não Ordenada**:  a ordem dos elementos **não** importa.
 ```python
 s1 = {1, 2, 3}
-s2 = (3, 2, 1}
+s2 = {3, 2, 1}
 print(s1 == s2)       # True, porque nao importa a ordem
 ```
 - **Mutável**: pode ser alterada, porém, não pode ser acessada por índice.
@@ -183,7 +176,6 @@ s = {1, 2, 2, 3, 3}
 print(s)             # {1, 2, 3}
 ```
 ### 3.1 Operações Básicas
-
 #### 3.1.1 Criação
 Conjuntos são criados utilizando a função `set()` ou `{}` contendo elementos. Observe:
 ```python
