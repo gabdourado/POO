@@ -20,10 +20,10 @@ print(t)             # (1, 2, 2)
 ```
 ### 1.1 Operações Básicas
 #### 1.1.1 Criação
-Tuplas são criadas utilizando parênteses `()`. Observe:
+Tuplas são criadas utilizando parênteses `()` ou a função `set()`. Observe:
 ```python
 t1 = (1, 2, 3)        # tupla com 3 elementos
-t2 = ()               # tupla vazia
+t2 = set()            # tupla vazia
 t3 = (5,)             # tupla de um unico elemento (vírgula eh obrigatoria)
 ```
 #### 1.1.2 Acesso
@@ -43,7 +43,7 @@ print(x, y)           # -1 2
 ### 1.2 Métodos Próprios
 Tuplas têm apenas dois métodos embutidos:
 #### 1.2.1 Método `count()`
-O método `count()` conta a quantidade de um determinado elemento passado como parçametro:
+O método `count()` conta a quantidade de um determinado elemento passado como parâmetro:
 ```python
 t = (1, 2, 2, 3, 2)
 print(t.count(2))     # 3
@@ -79,10 +79,10 @@ print(l)             # [1, 2, 2, 3, 3]
 
 ### 2.1 Operações Básicas
 #### 2.1.1 Criação
-Listas são criadas utilizando parênteses `[]`. Observe:
+Listas são criadas utilizando colchetes `[]` ou a função `list()`. Observe:
 ```python
 l1 = [1, 2, 3]                    # Lista com tres elementos
-l2 = []                           # Cria uma lista vazia
+l2 = list()                       # Cria uma lista vazia
 l3 = [1, "texto", True, (1, 2)]   # Comporta varios tipos de dados
 ```
 #### 2.1.2 Inserção de elementos
@@ -105,7 +105,7 @@ print(l)                     # [10, 2, 3, 4]
 Podemos apagar elementos em uma lista utilizando os métodos `pop()` e `remove()` ou a função `del()`:
 ```python
 l = [0, 1, 2, 3, 4, 5]
-l.pop(5)                       # Remove o elemento da posicao cinco (5) da lista e retorna o elemento dessa posicao
+l.pop(5)                      # Remove o elemento da posicao cinco (5) da lista e retorna o elemento dessa posicao
 del(l[0])                    # Deleta o elemento a posicao zero (0) da lista
 l.remove(2)                  # Remove o elemento 2, ja que esta na lista
 l.remove(2)                  # Erro: ValueError: list.remove(x): x not in list
@@ -115,7 +115,7 @@ l.remove(2)                  # Erro: ValueError: list.remove(x): x not in list
 Podemos esvaziar toda a lista usando o método `clear()`:
 ```python
 l = [1, 2, 3, 4]
-lista.clear()           # Esvazia a lista
+l.clear()               # Esvazia a lista
 print(l)                # []
 ```
 #### 2.2.2 Métodos `count()` e `index()`
@@ -127,9 +127,9 @@ print(l.count(1))       # 3
 Já o  método `index()` retorna o índice da primeira ocorrência de um **elemento que está na lista**, caso não esteja, dá erro:
 ```python
 l = [1, 2, 3, 2]
-print(t.index(2))     # 1
-print(t.index(2, 2))  # 3 (Busca a partir do indice 2)
-print(t.index(4))     # Erro: ValueError: 4 is not in list
+print(l.index(2))     # 1
+print(l.index(2, 2))  # 3 (Busca a partir do indice 2)
+print(l.index(4))     # Erro: ValueError: 4 is not in list
 ```
 #### 2.2.3 Método `sort()`
 Podemos ordenar uma lista usando o método `sort()`:
@@ -181,7 +181,7 @@ Conjuntos são criados utilizando a função `set()` ou `{}` contendo elementos.
 ```python
 s1 = {1, 2, 2, 3, 3, 4}    # Elementos duplicados são descartados
 s2 = set()                 # Cria um conjunto vazio
-s3 = {}                    # Atencao: {} cria um dicionario, nao um set
+s3 = {}                    # ATENCAO: {} cria um dicionario, nao um set
 print(s1)                  # {1, 2, 3, 4}
 ```
 #### 3.1.2 Inserção de elementos
@@ -284,7 +284,7 @@ Podemos apagar elementos em um conjunto utilizando os métodos `pop()` ou a fun�
 ```python
 d = {'nome': 'Gabriel', 'idade': 20, 'altura': 1.72} 
 d.pop('altura')                                        # Remove a chave 'altura', com erro se nao existir         
-del (d['idade'])                                       # Remove a chave 'altura', com erro se nao existir
+del (d['idade'])                                       # Remove a chave 'idade', com erro se nao existir
 print(d)                                               # {'nome': 'Gabriel'}
 ```
 ### 4.2 Métodos Próprios
