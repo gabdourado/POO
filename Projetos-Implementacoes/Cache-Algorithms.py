@@ -42,23 +42,28 @@ class Cache:
 
     def LFU(self, data: int) -> int:
         
-        if data in self.space_cache and self.space_cache.count(None) != 0:
-            self.space_cache.pop(0)
-            idx = self.space_cache.index(None)
-            self.space_cache.insert(idx, data)
-            return 1
-
         if data in self.space_cache:
-            return 1
+            
+            if self.space_cache.count(None) != 0:
+                self.space_cache.remove(data)
+                idx = self.space_cache.index(None)
+                self.space_cache.insert(idx, data)
+                
+                return 1
+            
+            self.space_cache.remove(data)
+            self.space_cache.append(data)
 
+            return 1
+    
         if self.space_cache.count(None) == 0:
             self.space_cache.pop(0)
             self.space_cache.append(data)
+            
             return 0
         
         idx = self.space_cache.index(None)
-        self.space_cache.insert(idx, data)
-        self.space_cache.pop(idx + 1)
+        self.space_cache[idx] = data
 
         return 0
 
