@@ -283,6 +283,16 @@ def clear_string(string):
 ```
 A função `clear_string` inicialmente limpa uma string de caracteres indesejados.
 ```python
+texto = './olA, tuDo:;. ,beM?'
+texto = clear_string(texto)
+print(texto)
+```
+Saída:
+```python
+olA tuDo beM
+```
+Vamos usar uma função geradora para modificar a função `clear_string`:
+```python
 def format_string(func_string):
   def tratament(string):
     string = func_string(string)
@@ -298,19 +308,52 @@ def clear_string(string):
       string = string.replace(char, '')
   return string
 ```
-Ao usar a função decoradora `format_string`, a função `clear_string` agora também converte cada palavra para maiúscula.
-
+Ao usar a função decoradora `format_string`, a função `clear_string` agora também converte cada caractere da string para maiúscula.
+```python
+texto = './olA, tuDo:;. ,beM?'
+texto = clear_string(texto)
+print(texto)
+```
+Saída:
+```python
+OLA TUDO BEM
+```
 ## 3.0 Boas práticas
+Existem algumas recomendações na criações de funções.
+### 3.1 Type Hints 
+Os _Type Hints_ definem o tipo esperado para argumentos e saídas de funções.
+```python
+def factorial(num: int) -> int:
+  fat = 1
+  while(num > 0):
+    fat *= num
+    num -= 1
+  return fat
+```
+A função acima calcula o valor do fatorial de um número.
+```python
+fat = factorial(3)
+print(fat)
+```
+Saída:
+```python
+6
+```
+### 3.2 Doc-strings
+Podemos melhorar a legibilidade do código usando doc-strings. Podemos adotar seguinte modo de documentação:
+```python
+def function(arg1: type1, agr2: type2, ...) -> type: 
+  """
+   The function return ...
 
-### 3.1 Doc-strings
-
-### 3.2 Type Hints 
-
-
-
-
-
-
-
-
-
+    Parameters:
+      arg1 (type1): Explanation
+      arg2 (type2): Explanation
+      ...
+    Returns:
+      output (type)
+      ...
+  """
+  ...
+  return output
+```
