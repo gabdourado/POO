@@ -17,7 +17,7 @@ Hello World!
 Para criar uma função usa-se a palavra reservada `def`, seguida do nome e seus parâmetros entre parênteses `()`.
 ```python
 def greeting(name):
-  print(f"Hello {name}!")
+  print(f"Hello, {name}!")
 ```
 Para chamar a função, basta escrever o seu nome e passar os parâmetos necessários para o seu funcionamento.
 ```python
@@ -25,7 +25,7 @@ greeting("Maria")
 ```
 Saída:
 ```python
-Hello Maria!
+Hello, Maria!
 ```
 ### 1.2 Parâmetros de funções
 #### 1.2.1 O que são parâmetros?
@@ -40,7 +40,7 @@ Nesse exemplo, a função precisa de dois números para calcular a soma, assim, 
 São parâmetros que já vêm com um valor pré-definido no momento em que a função é criada.
 ```python
 def greeting(name = "Friend"):
-  print(f"Hello {name}!")
+  print(f"Hello, {name}!")
 ```
 Aqui, o parâmetro `name` tem o valor padrão `"Friend"`. Observe o seu comportamento:
 ```python
@@ -49,10 +49,10 @@ greeting('João')
 ```
 Saída:
 ```python
-Hello Friend!
-Hello João!
+Hello, Friend!
+Hello, João!
 ```
-Sem argumento, a função imprimiu `"Hello Friend!"`. Passado `"João"` como parâmetro, ela imprimiu `"Hello João!"`.
+Sem argumento, a função imprimiu `"Hello, Friend!"`. Passado `"João"` como parâmetro, ela imprimiu `"Hello, João!"`.
 ### 1.3 Retorno de funções
 #### 1.3.1 Retorno de um único valor
 Funções podem devolver um resultado para o lugar onde foram chamadas, basta usar a palavra reservada `return`.
