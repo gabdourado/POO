@@ -112,7 +112,7 @@ Saída:
 ```python
 25
 ```
-### 2.2 Funções built-in com funções`lambda`
+### 2.2 Funções built-in com a função `lambda`
 Podemos usar funções `lambda` juntamente com algumas funções embutidas do python.
 #### 2.2.1 Função `map`
 A função `map` possui a seguinte sintaxe:
@@ -170,14 +170,135 @@ Saída:
 {'Beatriz': 18, 'Caio': 19, 'Amanda': 20, 'Davi': 21}
 ```
 ### 2.3 Geradores
+São funções utilizadas para gerar **iteradores**. Sendo uma ferramenta poderosa para economia de **espaço** e **tempo**.
 
-### 2.4 Funções de ordem superior
+#### 2.3.1 Como criar um objeto gerador?
+Para criar um objeto gerador, a sintaxe é semelhante a uma _list comprehension_:
+```python
+(expression for item in iterable)
+```
+Por exemplo, código abaixo gera um objeto gerador que gera uma sequência de inteiros de `0` até `9`.
+```python
+generator = (x for x in range(10))
 
-### 2.5 Callback
+print(next(generator))
+print(next(generator))
+print(next(generator))
+```
+Saída:
+```python
+0
+1
+2
+```
+#### 2.3.2 Funções geradoras e `yield`
+Podemos criar uma função que "retorna" um gerador, para isso usamos a palavra reservada `yield`.
+```python
+def generator(size):
+  for x in range(size):
+    yield x**2
+```
+A função acima retorna um gerador que produz os quadrados de `0` até `size - 1`.
+```python
+squares = generator(5)
 
-### 2.6 Modificadores
+for value in squares:
+  print(value)
+```
+Saída:
+```python
+0
+1
+4
+9
+16
+```
+### 2.4 Callback
+São funções que recebem outras funções como parâmetros.
+```python
+def say_hello(name):
+  print(f"Hello, {name}!")
 
-### 2.7 Funções recursivas
+def process_name(other_function):
+  name = input("What's your name? ")
+  other_function(name)
+  return name
+```
+A função `process_name` recebe como parâmetro outra função, vamos passar a função `say_hello`.
+```python
+name = process_name(say_hello)
+```
+Entrada:
+```python
+Gabriel
+```
+Saída:
+```python
+Hello, Gabriel!
+```
+### 2.5 Funções de ordem superior
+Funções de ordem superior são estruturas que podem retornar funções e/ou receber funções como parâmetros.
+```python
+def calculator(op):
+  match(op):
+    case '+':
+      def sum(num1, num2):
+        return num1 + num2
+      return sum
+    case '-':
+      def sub(num1, num2):
+        return num1 - num2
+      return sub
+    case '*':
+      def mul(num1, num2):
+        return num1 * num2
+      return mul
+    case '/':
+      def div(num1, num2):
+        return num1 / num2
+      return div
+```
+A função `calculator` recebe uma operação (`+`, `-`, `*` e `/`) e retorna uma função que executa essa operação.
+```python
+sum = calculator('+')
+mul = calculator('*')
+
+print(sum(2, 3))
+print(mul(4, 6))
+```
+Saída:
+```python
+5
+24
+```
+### 2.6 Decoradores
+São funções que recebem outra função como parâmetro e retornam uma nova função mais aprimorada.
+```python
+def clear_string(string):
+  bad_char = ('.', ',', ':', ';', '/', '?', '!', '@')
+  for char in string:
+    if char in bad_char:
+      string = string.replace(char, '')
+  return string
+```
+A função `clear_string` inicialmente limpa uma string de caracteres indesejados.
+```python
+def format_string(func_string):
+  def tratament(string):
+    string = func_string(string)
+    string = string.upper()
+    return string
+  return tratament
+
+@format_string
+def clear_string(string):
+  bad_char = ('.', ',', ':', ';', '/', '?', '!', '@')
+  for char in string:
+    if char in bad_char:
+      string = string.replace(char, '')
+  return string
+```
+Ao usar a função decoradora `format_string`, a função `clear_string` agora também converte cada palavra para maiúscula.
 
 ## 3.0 Boas práticas
 
