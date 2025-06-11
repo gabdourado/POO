@@ -89,11 +89,6 @@ Saída:
 Min: 1
 Max: 7
 ```
-### 1.4 Parâmetros especiais
-#### 1.4.1 Parâmetros `*args` (argumentos posicionais variáveis)
-
-#### 1.4.1 Parâmetros `**kwargs` (argumentos nomeados variáveis)
-
 ## 2.0 Tipos especiais de funções
 ### 2.1 Funções `lambda`
 Funções `lambda` são funções anônimas, criadas seguindo a seguinte sintaxe:
