@@ -19,7 +19,7 @@ Para criar uma função usa-se a palavra reservada `def`, seguida do nome e seus
 def greeting(name):
   print(f"Hello, {name}!")
 ```
-Para chamar a função, basta escrever o seu nome e passar os parâmetos necessários para o seu funcionamento.
+Para chamar a função, basta escrever o seu nome e passar os parâmetos necessários para o seu funcionamento (`name`, nesse caso).
 ```python
 greeting("Maria")
 ```
@@ -119,7 +119,7 @@ A função `map` possui a seguinte sintaxe:
 ```python
 map(function, iterable)
 ```
-Ela aplica uma determinada funções em cada elemento de um iterável (`list`, `dict`, `set`, etc).
+Ela aplica uma determinada função em cada elemento de um iterável (`list`, `dict`, `set`, etc).
 ```python
 _list = [2.3, 3.14, 1.5, 0.4, 4.0]
 list_int = list(map(int, _list))
@@ -180,7 +180,9 @@ Para criar um objeto gerador, a sintaxe é semelhante a uma _list comprehension_
 Por exemplo, código abaixo gera um objeto gerador que gera uma sequência de inteiros de `0` até `9`.
 ```python
 generator = (x for x in range(10))
-
+```
+Para acessar o próximo elemento do gerador, basta usar a palavra reservada `next`:
+```python
 print(next(generator))
 print(next(generator))
 print(next(generator))
@@ -201,7 +203,9 @@ def generator(size):
 A função acima retorna um gerador que produz os quadrados de `0` até `size - 1`.
 ```python
 squares = generator(5)
-
+```
+Outra maneira de percorrer os elementos do gerador, sem usar `next`, é usar um loop `for`:
+```python
 for value in squares:
   print(value)
 ```
@@ -291,7 +295,16 @@ Saída:
 ```python
 olA tuDo beM
 ```
-Vamos usar uma função geradora para modificar a função `clear_string`:
+Vamos usar uma função decoradora para modificar a função `clear_string`:
+```python
+def format_string(func_string):
+  def tratament(string):
+    string = func_string(string)
+    string = string.upper()
+    return string
+  return tratament
+```
+Para modificarmos a função `clear_string`, podemos usar a sintaxe `@decorator` da seguinte forma:
 ```python
 def format_string(func_string):
   def tratament(string):
@@ -308,7 +321,7 @@ def clear_string(string):
       string = string.replace(char, '')
   return string
 ```
-Ao usar a função decoradora `format_string`, a função `clear_string` agora também converte cada caractere da string para maiúscula.
+Ao usar o decorador `format_string`, a função `clear_string` agora também converte cada caractere da string para maiúscula.
 ```python
 texto = './olA, tuDo:;. ,beM?'
 texto = clear_string(texto)
@@ -319,9 +332,9 @@ Saída:
 OLA TUDO BEM
 ```
 ## 3.0 Boas práticas
-Existem algumas recomendações na criações de funções.
+Existem algumas recomendações e boas práticas na criações de funções.
 ### 3.1 Type Hints 
-Os _Type Hints_ definem o tipo esperado para argumentos e saídas de funções.
+Os _Type Hints_ definem o tipo esperado para argumentos e saídas de funções, podemos usá-los para melhor visualização.
 ```python
 def factorial(num: int) -> int:
   fat = 1
@@ -330,7 +343,7 @@ def factorial(num: int) -> int:
     num -= 1
   return fat
 ```
-A função acima calcula o valor do fatorial de um número.
+A função acima recebe um `int` e retorna um `int`, calculando o fatorial de um número.
 ```python
 fat = factorial(3)
 print(fat)
@@ -340,11 +353,12 @@ Saída:
 6
 ```
 ### 3.2 Doc-strings
-Podemos melhorar a legibilidade do código usando doc-strings. Podemos adotar seguinte modo de documentação:
+Doc-strings ajudam na documentação e compreensão do código. Podemos adotar seguinte modelo:
 ```python
 def function(arg1: type1, agr2: type2, ...) -> type: 
   """
-   The function return ...
+    Description:
+     The function return ...
 
     Parameters:
       arg1 (type1): Explanation
