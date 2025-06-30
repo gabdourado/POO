@@ -1,4 +1,5 @@
 # Programação Orientada a Objetos
+
 ## 1.0 Classes e Objetos
 Uma classe é uma estrutura que organiza dados e funcionalidades, servindo como um "**molde"** para criar novos objetos.
 
@@ -50,5 +51,57 @@ Bob
 Hello, my name is Bob!
 ```
 
+## 2.0 Encapsulamento
+Podemos proteger classes contra alterações ou exclusões acidentais, categorizando seus atributos e métodos em:
 
+1. **Públicos** (`+`): Acessível de qualquer lugar, permitindo alterações.
+```python
+class Tree:
+   def __init__(self, height):
+       self.height = height
+```
+Definimos a classe `Tree` e podemos criar uma instância dessa classe:
+```python
+pine = Tree(10)
+print(pine.height) # 10
+```
+Observe que podemos manipular o valor de altura (`height`), podendo provocar acontecimentos inesperados:
+```python
+pine.height = -10
+print(pine.height) # -10
+```
+2. **Protegidos** (`#`): Ainda permitindo alterações, sendo acessível dentro do mesmo módulo ou por sub-classes.
 
+Definimos uma atributo ou método como protegido usando o `_`:
+```python
+class Tree:
+   def __init__(self, height):
+       self._height = height
+```
+Porém, o atributo ainda pode ser modificado no contexto abaixo, levando a comportamntos indesejados em certos contextos:
+```python
+pine = Tree(10)
+pine._height = 'sooo big'
+print(pine._height) # 'sooo big'
+```
+
+3. **Privados** (`-`): Acessível apenas dentro da classe, sendo mais restritivo.
+
+Definimos uma atributo ou método como privado usando o `__` (duplo sublinhado):
+```python
+class Tree:
+   def __init__(self, height):
+       self.__height = height
+```
+Dessa forma, não podemos fazer alterações indevídas nos atributos de uma classe:
+```python
+pine = Tree(20)
+print(pine.__height)
+```
+Saída:
+```shell
+AttributeError: 'Tree' object has no attribute '__height'
+```
+## 3.0 Composição e Agregação
+
+## 4.0 Herança
