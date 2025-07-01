@@ -131,7 +131,7 @@ class Client:
     print(f"Saldo: R$ {balance}")
     print(f"Limite: R$ {bound}")
 ```
-Observe que a classe `Cliente` possui uma `Conta`, e não faz sentido a conta existir se o cliente for **deletado**.
+A classe `Cliente` possui uma `Conta`, mas não faz sentido a conta existir se o cliente for **deletado**, essa e a relação de morte.
 ```python
 client1 = Client(
     '111-222-333-44', 
@@ -186,7 +186,7 @@ dev2 = Developer('Júlia Silva', ['Java', 'JavaScript'], 1500)
 
 team = Team('Contrução de Sistema de Revervas', [dev1, dev2])
 ```
-Vamos mostrar as informações desse time usando o método `info_team`:
+Vamos mostrar as informações desse time usando o método `info_team` de `Team`:
 ```python
 team.info_team()
 ```
@@ -209,3 +209,59 @@ Linguagens:
 Salário: 1500
 ```
 ## 4.0 Herança
+É quando uma classe filha (sub-classe) herda atributos e métodos de uma classe mãe (super-classe). Observa as classes abaixo:
+```python
+class Funcionario:
+  def __init__(self, name: str, cpf: str, salary: float):
+    self.__name = name
+    self.__cpf = cpf
+    self.__salary = salary
+
+class Gerente:
+  def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
+    self.__name = name
+    self.__cpf = cpf
+    self.__salary = salary
+    self.__monthly_goal = monthly_goal
+    self.__bonuses = bonuses
+```
+Perceba que `Gerente` é um tipo de funcionário, porém com mais atribututos. Podemos então fazer o seguinte:
+```python
+class Funcionario:
+  def __init__(self, name: str, cpf: str, salary: float):
+    self.__name = name
+    self.__cpf = cpf
+    self.__salary = salary
+
+class Gerente(Funcionario):
+  def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
+    super().__init__(name, cpf, salary)
+    self.__monthly_goal = monthly_goal
+    self.__bonuses = bonuses
+```
+Usamos a função `super()` para que a classe filha herde os atributos e métodos da classe mãe.
+```python
+class Funcionario:
+  def __init__(self, name: str, cpf: str, salary: float):
+      self.__name = name
+      self.__cpf = cpf
+      self.__salary = salary
+
+  def info_func(self):
+    print(f"Nome: {self.__name}")
+    print(f"CPF: {self.__cpf}")
+    print(f"Salário: {self.__salary}")
+
+class Gerente(Funcionario):
+  def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
+        super().__init__(name, cpf, salary)
+        self.__monthly_goal = monthly_goal
+        self.__bonuses = bonuses
+
+  def info_gerente(self):
+    self.info_func()
+    print(f"Meta mensal: {self.__monthly_goal}")
+    print(f"Bônus: {self.__bonuses}")
+```
+Podemos agora usar os métodos de `Funcionario` dentro de `Gerente`, como pode ser visto acima com o método `info_func`.
+
