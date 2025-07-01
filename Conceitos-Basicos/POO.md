@@ -211,13 +211,13 @@ Salário: 1500
 ## 4.0 Herança
 É quando uma classe filha (sub-classe) herda atributos e métodos de uma classe mãe (super-classe). Observa as classes abaixo:
 ```python
-class Funcionario:
+class Employee:
   def __init__(self, name: str, cpf: str, salary: float):
     self.__name = name
     self.__cpf = cpf
     self.__salary = salary
 
-class Gerente:
+class Manager:
   def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
     self.__name = name
     self.__cpf = cpf
@@ -225,15 +225,15 @@ class Gerente:
     self.__monthly_goal = monthly_goal
     self.__bonuses = bonuses
 ```
-Perceba que `Gerente` é um tipo de funcionário, porém com mais atribututos. Podemos então fazer o seguinte:
+Perceba que `Manager` é um tipo de funcionário, porém com mais atribututos. Podemos então fazer o seguinte:
 ```python
-class Funcionario:
+class Employee:
   def __init__(self, name: str, cpf: str, salary: float):
     self.__name = name
     self.__cpf = cpf
     self.__salary = salary
 
-class Gerente(Funcionario):
+class Manager(Employee):
   def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
     super().__init__(name, cpf, salary)
     self.__monthly_goal = monthly_goal
@@ -241,27 +241,27 @@ class Gerente(Funcionario):
 ```
 Usamos a função `super()` para que a classe filha herde os atributos e métodos da classe mãe.
 ```python
-class Funcionario:
+class Employee:
   def __init__(self, name: str, cpf: str, salary: float):
       self.__name = name
       self.__cpf = cpf
       self.__salary = salary
 
-  def info_func(self):
+  def info_employee(self):
     print(f"Nome: {self.__name}")
     print(f"CPF: {self.__cpf}")
     print(f"Salário: {self.__salary}")
 
-class Gerente(Funcionario):
+class Manager(Employee):
   def __init__(self, name: str, cpf: str, salary: float, monthly_goal: float, bonuses: float):
         super().__init__(name, cpf, salary)
         self.__monthly_goal = monthly_goal
         self.__bonuses = bonuses
 
-  def info_gerente(self):
-    self.info_func()
+  def info_manager(self):
+    self.info_employee()
     print(f"Meta mensal: {self.__monthly_goal}")
     print(f"Bônus: {self.__bonuses}")
 ```
-Podemos agora usar os métodos de `Funcionario` dentro de `Gerente`, como pode ser visto acima com o método `info_func`.
+Podemos agora usar os métodos de `Employee` dentro de `Manager`, como pode ser visto acima com o método `info_manager`.
 
