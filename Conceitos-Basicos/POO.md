@@ -131,7 +131,7 @@ class Client:
     print(f"Saldo: R$ {balance}")
     print(f"Limite: R$ {bound}")
 ```
-A classe `Cliente` possui uma `Conta`, mas não faz sentido a conta existir se o cliente for **deletado**, essa e a relação de morte.
+A classe `Client` possui uma `Account`, mas não faz sentido a conta existir se o cliente for **deletado**, essa e a relação de morte.
 ```python
 client1 = Client(
     '111-222-333-44', 
@@ -140,7 +140,7 @@ client1 = Client(
     Account(1, 100.0, 700.0) 
     )
 ```
-Vamos usar o método `extrato` de `Cliente` para acessar os valores de sua conta:
+Vamos usar o método `extrato` de `Client` para acessar os valores de sua conta:
 ```python
 client1.extrato()
 ```
