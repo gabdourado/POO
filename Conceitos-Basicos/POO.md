@@ -1,7 +1,7 @@
 # Programação Orientada a Objetos
 
 ## 1.0 Classes e Objetos
-Uma classe é uma estrutura que organiza dados e funcionalidades, servindo como um "**molde"** para criar novos objetos.
+Uma classe é uma estrutura que organiza dados e funcionalidades, servindo como um "**molde"** para a criação de novos objetos.
 
 ### 1.1 Definição de uma Classe
 Para definirmos uma nova classe, usamos a palavra reservada `class`:
@@ -24,7 +24,7 @@ class Person:
 Observe a presença do parâmetro `self`, ele é uma referência à instância atual da classe.
 
 ### 1.3 Métodos de uma Classe
-Além de atriburtos, uma classe possui métodos, que podemos definir usando a palavra reservada `def`:
+Além de atributos, uma classe possui métodos, que podemos definir usando a palavra reservada `def`:
 ```python
 class Person:
   def __init__(self, name: str, age: int):
@@ -36,7 +36,7 @@ class Person:
 ```
 
 ### 1.4 Instância de uma classe 
-Para criarmos uma instância de uma classe, o que chamamos de objeto, usamos a notação de função:
+Para criarmos uma instância de uma classe, o que chamamos de **objeto**, usamos a notação de função:
 ```python
 person1 = Person('Bob', 17)
 ```
@@ -209,7 +209,7 @@ Linguagens:
 Salário: 1500
 ```
 ## 4.0 Herança
-É quando uma classe filha (sub-classe) herda atributos e métodos de uma classe mãe (super-classe). Observa as classes abaixo:
+É quando uma classe filha (sub-classe) herda atributos e métodos de uma classe mãe (super-classe). Observe as classes abaixo:
 ```python
 class Employee:
   def __init__(self, name: str, cpf: str, salary: float):
@@ -265,3 +265,54 @@ class Manager(Employee):
 ```
 Podemos agora usar os métodos de `Employee` dentro de `Manager`, como pode ser visto acima com o método `info_manager`.
 
+## 5.0 Funções `hasattr()` e `callable()`
+São funções que podemos utilizar para analisar atributos e métodos de objetos.
+
+### 5.1 Função `hasattr()`
+Podemos usar essa função pora saber se um objeto possui ou não determinando atributo ou método. Seguindo a seguinte sintaxe:
+```python
+hasattr(object, attribute_name)
+```
+Antes de usarmos a função, vamos definir a classe `Dog`:
+```python
+class Dog:
+  def __init__(self, name: str, breed: str):
+    self.name = name
+    self.breed = breed
+
+  def bark(self):
+    return "Woof!"
+```
+Agora, definindo um objeto para testarmos:
+```python
+my_dog = Dog('Bob', 'Golden Retriever')
+```
+ Vamos verificar a existência ou não de alguns atributos e métodos do objeto criado:
+ ```python
+print(hasattr(my_dog, 'name'))
+print(hasattr(my_dog, 'age'))
+print(hasattr(my_dog, 'bark'))
+```
+Saída:
+```shell
+True  # a classe Dog tem atributo 'name'
+False # a classe Dog NÃO tem atributo 'age'
+True  # a classe Dog tem o atributo (método) 'bark'
+```
+
+### 5.2 Função `callable()`
+Essa função nos diz se um determinado atributo - que existe - é chamável como uma função. Segue a seguinte sintaxe:
+```python
+callable(object)
+```
+Ainda usando a classe `Dog`, vamos analisar se seus atributos são chamáveis (ou seja, se são métodos):
+```python
+print(callable(my_dog.bark))
+print(callable(my_dog.name))
+```
+Saída:
+```shell
+True  # `bark` é um método da Classe Dog
+False # `name` é uma string e não um método da classe Dog
+```
+## 6.0 Métodos Mágicos
