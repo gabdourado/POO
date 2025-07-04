@@ -312,7 +312,6 @@ print(callable(my_dog.name))
 ```
 Saída:
 ```shell
-True  # `bark` é um método da Classe Dog
-False # `name` é uma string e não um método da classe Dog
+True  # 'bark' é um método da Classe Dog
+False # 'name' é uma string e não um método da classe Dog
 ```
-## 6.0 Métodos Mágicos
