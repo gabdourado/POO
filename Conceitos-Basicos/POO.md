@@ -265,15 +265,8 @@ class Manager(Employee):
 ```
 Podemos agora usar os métodos de `Employee` dentro de `Manager`, como pode ser visto acima com o método `info_manager`.
 
-## 5.0 Funções `hasattr()` e `callable()`
-São funções que podemos utilizar para analisar atributos e métodos de objetos.
-
-### 5.1 Função `hasattr()`
-Podemos usar essa função pora saber se um objeto possui ou não determinando atributo ou método. Seguindo a seguinte sintaxe:
-```python
-hasattr(object, attribute_name)
-```
-Antes de usarmos a função, vamos definir a classe `Dog`:
+## 5.0 Funções `hasattr()`, `getattr()`, `setattr()`, `selattr()` e `callable()`
+São funções utilizadas para analisar atributos e métodos de objetos. Antes de aprendermos cada uma, vamos definir a classe `Dog`:
 ```python
 class Dog:
   def __init__(self, name: str, breed: str):
@@ -287,7 +280,12 @@ Agora, definindo um objeto para testarmos:
 ```python
 my_dog = Dog('Bob', 'Golden Retriever')
 ```
- Vamos verificar a existência ou não de alguns atributos e métodos do objeto criado:
+### 5.1 Função `hasattr()`
+Usada para saber se um objeto possui ou não um determinando atributo ou método. Seguindo a seguinte sintaxe:
+```python
+hasattr(object, attribute_name)
+```
+ Vamos verificar a existência ou não de alguns atributos e métodos do objeto `my_dog` da classe `Dog`:
  ```python
 print(hasattr(my_dog, 'name'))
 print(hasattr(my_dog, 'age'))
@@ -299,13 +297,57 @@ True  # a classe Dog tem atributo 'name'
 False # a classe Dog NÃO tem atributo 'age'
 True  # a classe Dog tem o atributo (método) 'bark'
 ```
-
-### 5.2 Função `callable()`
+### 5.2 Função `getattr()`
+Usamos para pegar um valor de um determinando atributo, seguindo a sintaxe abaixo:
+```python
+getattr(object, attribute_name, default)
+```
+Testando com o objeto criado, temos o seguinte:
+ ```python
+print(getattr(my_dog, 'name'))
+print(getattr(my_dog, 'age', 'Atributo não encontrado'))
+```
+Saída:
+```shell
+Bob  # Retorna o valor do atributo 'name'
+Atributo não encontrado # Retorna o parâmetro default pois não tem o atributo 'age'
+```
+### 5.3 Função `setattr()`
+Função usada para modificar o valor de um determinado atributo:
+```python
+setattr(object, attribute_name, new_value)
+```
+Vamos testar com a instância `my_dog` de `Dog`:
+```python
+setattr(my_dog, 'name', 'Gold')
+print(my_dog.name)
+```
+Saída:
+```shell
+Gold  # Novo valor do atributo 'name'
+```
+### 5.4 Função `delattr()`
+Função usada para remover um determinado atributo da instãncia de uma classe. Observe a sintaxe:
+```python
+delattr(object, attribute_name)
+```
+Testando com o objeto, temos o seguinte:
+```python
+delattr(my_dog, 'name')
+try:
+    print(my_dog.name)
+except AttributeError:
+  print("Atributo inexitente")
+```
+```shell
+Atributo inexitente  # Após deletar, o tentar acessar o valor do atributo 'name', temos um AttributeError
+```
+### 5.5 Função `callable()`
 Essa função nos diz se um determinado atributo - que existe - é chamável como uma função. Segue a seguinte sintaxe:
 ```python
 callable(object)
 ```
-Ainda usando a classe `Dog`, vamos analisar se seus atributos são chamáveis (ou seja, se são métodos):
+Ainda usando a classe `Dog`, vamos analisar se seus atributos são chamáveis, ou seja, se são métodos:
 ```python
 print(callable(my_dog.bark))
 print(callable(my_dog.name))
@@ -314,4 +356,4 @@ Saída:
 ```shell
 True  # 'bark' é um método da Classe Dog
 False # 'name' é uma string e não um método da classe Dog
-```
+``
