@@ -225,7 +225,7 @@ class Manager:
     self.__monthly_goal = monthly_goal
     self.__bonuses = bonuses
 ```
-Perceba que `Manager` é um tipo de funcionário, porém com mais atribututos. Podemos então fazer o seguinte:
+Perceba que `Manager` é um tipo de funcionário, porém com mais atributos. Podemos então fazer o seguinte:
 ```python
 class Employee:
   def __init__(self, name: str, cpf: str, salary: float):
@@ -265,7 +265,7 @@ class Manager(Employee):
 ```
 Podemos agora usar os métodos de `Employee` dentro de `Manager`, como pode ser visto acima com o método `info_manager`.
 
-## 5.0 Funções `hasattr()`, `getattr()`, `setattr()`, `selattr()` e `callable()`
+## 5.0 Funções `hasattr()`, `getattr()`, `setattr()`, `delattr()` e `callable()`
 São funções utilizadas para analisar atributos e métodos de objetos. Antes de aprendermos cada uma, vamos definir a classe `Dog`:
 ```python
 class Dog:
@@ -356,4 +356,4 @@ Saída:
 ```shell
 True  # 'bark' é um método da Classe Dog
 False # 'name' é uma string e não um método da classe Dog
-``
+```
